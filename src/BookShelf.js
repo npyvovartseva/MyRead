@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import BooksList from './BooksList';
 
-class BookShelf extends Component{
+class BookShelf extends Component {
 
-    render(){
-        return(
-            <div><BookShelf /></div>
+    render() {
+        console.log(this.props.books);
+        return (
+            <div className="bookshelf">
+                <h2 className="bookshelf-title">{this.props.title}</h2>
+                <div className="bookshelf-books">
+                    <BooksList books={this.props.books}/>
+                </div>
+            </div>
         )
     }
 }
