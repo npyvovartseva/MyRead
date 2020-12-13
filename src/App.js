@@ -29,6 +29,15 @@ class BooksApp extends React.Component {
       })
   }
 
+  handleShelfChange = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+      .then((book) => {
+        this.setState((currentState) => ({
+          books: currentState.books.concat([book])
+        }))
+      })
+  }
+
   filterBooksByShelf(shelf) {
     return this.state.books.filter(book => book.shelf === shelf)
   }
@@ -40,6 +49,7 @@ class BooksApp extends React.Component {
         currentBookshelf={shelf.id}
         books={this.filterBooksByShelf(shelf.name)}
         bookshelf={this.state.bookshelf}
+        handleShelfChange={this.handleShelfChange}
       />
     ))
   }

@@ -6,7 +6,6 @@ class BookShelf extends Component {
         return this.props.bookshelf.find(shelf=>shelf.id===this.props.currentBookshelf).title;
     }
     render() {
-        
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.bookShelfTitle()}</h2>
@@ -14,7 +13,8 @@ class BookShelf extends Component {
                     <BooksList 
                     books={this.props.books} 
                     bookshelf={this.props.bookshelf} 
-                    currentBookshelf={this.props.currentBookshelf} />
+                    currentBookshelf={this.props.currentBookshelf} 
+                    handleShelfChange={this.props.handleShelfChange}/>
                 </div>
             </div>
         )

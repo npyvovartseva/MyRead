@@ -10,8 +10,14 @@ class Book extends Component {
             </option>
         ))
     }
-    bookShelfName(){
-        return this.props.bookshelf.find(shelf=>shelf.id===this.props.currentBookshelf).name;
+
+    handleShelfChange = (e) => {
+        this.props.handleShelfChange(this.props.id, e.target.value);
+    }
+    handleShelfChange = this.handleShelfChange.bind(this);
+
+    bookShelfName() {
+        return this.props.bookshelf.find(shelf => shelf.id === this.props.currentBookshelf).name;
     }
     render() {
         return (
@@ -19,7 +25,7 @@ class Book extends Component {
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${this.props.backgroundImage})` }}></div>
                     <div className="book-shelf-changer">
-                        <select value={this.bookShelfName()}>
+                        <select value={this.bookShelfName()} onChange={this.handleShelfChange}>
                             <option value="move" disabled>Move to...</option>
                             {this.bookShelfChangerRender()}
                             <option value="none">None</option>

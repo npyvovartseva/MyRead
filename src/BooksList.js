@@ -3,14 +3,16 @@ import Book from './Book';
 
 class BooksList extends Component {
     renderBooks() {
-        return this.props.books.map(({id, title, authors, imageLinks}) => (
+        return this.props.books.map(({ id, title, authors, imageLinks }) => (
             <li key={id}>
                 <Book
+                    id={id}
                     title={title}
                     authors={authors.join(', ')}
-                    backgroundImage={imageLinks.smallThumbnail} 
+                    backgroundImage={imageLinks.smallThumbnail}
                     bookshelf={this.props.bookshelf}
-                    currentBookshelf={this.props.currentBookshelf}/>
+                    currentBookshelf={this.props.currentBookshelf}
+                    handleShelfChange={this.props.handleShelfChange} />
             </li>
         ))
     }
