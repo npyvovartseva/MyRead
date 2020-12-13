@@ -33,9 +33,14 @@ class BooksApp extends React.Component {
     return this.state.books.filter(book => book.shelf === shelf)
   }
 
-  renderBookShelfs(){
-    return this.state.bookshelf.map(shelf=>(
-      <BookShelf key={shelf.id} title={shelf.title} books={this.filterBooksByShelf(shelf.name)}/>
+  renderBookShelfs() {
+    return this.state.bookshelf.map(shelf => (
+      <BookShelf
+        key={shelf.id}
+        currentBookshelf={shelf.id}
+        books={this.filterBooksByShelf(shelf.name)}
+        bookshelf={this.state.bookshelf}
+      />
     ))
   }
 
