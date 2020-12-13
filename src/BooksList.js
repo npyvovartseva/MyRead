@@ -8,7 +8,9 @@ class BooksList extends Component {
                 <Book
                     title={title}
                     authors={authors.join(', ')}
-                    backgroundImage={imageLinks.smallThumbnail} />
+                    backgroundImage={imageLinks.smallThumbnail} 
+                    bookshelf={this.props.bookshelf}
+                    currentBookshelf={this.props.currentBookshelf}/>
             </li>
         ))
     }
