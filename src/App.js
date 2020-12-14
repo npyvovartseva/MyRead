@@ -31,10 +31,12 @@ class BooksApp extends React.Component {
 
   handleShelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf)
-      .then((book) => {
-        this.setState((currentState) => ({
-          books: currentState.books.concat([book])
-        }))
+      .then((res) => {
+        this.setState((currentState) => {
+          const bookChanged = currentState.books.splice(currentState.books.findIndex(i => i.id === book), 1)[0];
+          bookChanged.shelf = shelf;
+          return { books: [...currentState.books, bookChanged] }
+        })
       })
   }
 
