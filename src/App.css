@@ -118,8 +118,21 @@ button:active {
   outline: none;
 }
 
-.search-books-results {
+.search-books-results, .no-books-found {
   padding: 80px 10px 20px;
+}
+
+.no-books-found div{
+  height: 10em;
+  background-image: url('./icons/storytelling.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10em;
+}
+
+.no-books-found h2{
+  text-align: center;
+  color: #31BEBE;
 }
 
 /* books grid */
