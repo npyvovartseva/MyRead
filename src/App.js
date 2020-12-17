@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import SearchBooks from './SearchBooks';
 import ListBooks from './ListBooks';
 import './App.css';
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
 
   state = {
     bookshelf: [
@@ -14,28 +14,29 @@ class BooksApp extends React.Component {
       { id: 2, title: 'Read', name: 'read' }
     ],
     books: []
-  }
+  };
 
   componentDidMount() {
+    this.retriveMyBooks();
+  }
+
+  retriveMyBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
           books
         }))
       })
-  }
+  };
 
   handleShelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then((res) => {
-        this.setState((currentState) => {
-          const bookChanged = currentState.books.splice(currentState.books.findIndex(i => i.id === book), 1)[0];
-          bookChanged.shelf = shelf;
-          return { books: [...currentState.books, bookChanged] }
-        })
+        if (res) {
+          this.retriveMyBooks();
+        }
       })
-  }
-
+  };
 
   render() {
     return (
@@ -57,8 +58,8 @@ class BooksApp extends React.Component {
           </Switch>
         </BrowserRouter>
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;

@@ -1,29 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Book from './Book';
 
-class BooksList extends Component {
-    renderBooks() {
-        return this.props.books.map(({ id, title, authors, imageLinks }) => (
-            <li key={id}>
+const BooksList = ({ books, bookshelf, handleShelfChange }) => {
+    const renderBooks = () => {
+        return books.map(book => (
+            <li key={book.id}>
                 <Book
-                    id={id}
-                    title={title}
-                    authors={authors.join(', ')}
-                    backgroundImage={imageLinks.smallThumbnail}
-                    bookshelf={this.props.bookshelf}
-                    currentBookshelf={this.props.currentBookshelf}
-                    handleShelfChange={this.props.handleShelfChange} />
+                    book={book}
+                    bookshelf={bookshelf}
+                    handleShelfChange={handleShelfChange} />
             </li>
         ))
-    }
+    };
 
-    render() {
-        return (
-            <ol className="books-grid">
-                {this.renderBooks()}
-            </ol>
-        )
-    }
-}
+    return (
+        <ol className="books-grid">
+            {renderBooks()}
+        </ol>
+    );
+};
 
 export default BooksList;
